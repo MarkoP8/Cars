@@ -1,0 +1,126 @@
+{% extends "_layout.jinja" %}
+{% block content %}
+
+
+<form action="{{url_for('new_post')}}" method="post"  enctype="multipart/form-data">
+    <div>
+        <h3>Name and price</h3>
+        <label for="post_title">Title</label>
+        <input id="post_title" name="post_title" type="text"/>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <h2>Information</h2>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Brand</td>
+                    <label for="post_brand"></label>
+                    <td><select name="post_brand" id="brand" required>
+                        <option disabled {{ "selected" if not operation else "" }} value="">Brand</option>
+                        <option value="bmw" {{ "selected" if operation == "bmw" else "" }}>Bmw</option>
+                        <option value="rollse_royce" {{ "selected" if operation == "rollse_royce" else "" }}>Rollse Royce</option>
+                        <option value="lamborghini" {{ "selected" if operation == "lamborghini" else "" }}>Lamborghini</option>
+                        <option value="porshe" {{ "selected" if operation == "porshe" else "" }}>Porshe</option>
+                        <option value="ferrari" {{ "selected" if operation == "ferrari" else "" }}>Ferrari</option>
+                        <option value="mercedes" {{ "selected" if operation == "mercedes" else "" }}>Mercedes</option>
+                        <option value="jaguar" {{ "selected" if operation == "jaguar" else "" }}>Jaguar</option>
+                        <option value="bentley" {{ "selected" if operation == "bentley" else "" }}>Bentley</option>
+                        <option value="mclaren" {{ "selected" if operation == "mclaren" else "" }}>McLaren</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <label for="post_model"></label>
+                    <td><input id="post_model" name="post_model" type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Price $</td>
+                    <label for="post_price"></label>
+                    <td><input id="post_price" name="post_price" type="number" required></td>
+                </tr>
+                <tr>
+                    <td>Year made</td>
+                    <label for="post_year_made"></label>
+                    <td><input id="post_year_made" name="post_year_made" type="number" min="2000" max="2022" required></td>
+                </tr>
+                <tr>
+                    <td>Mileage(km)</td>
+                    <label for="post_mileage_km"></label>
+                    <td><input id="post_mileage_km" name="post_mileage_km" type="number" required></td>
+                </tr>
+                <tr>
+                    <td>Car body</td>
+                    <label for="post_car_body"></label>
+                    <td><input id="post_car_body" name="post_car_body" type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Feul</td>
+                    <label for="post_feul"></label>
+                    <td><input id="post_feul" name="post_feul" type="text" required></td>
+                </tr>
+                <tr>
+                    <td>Cubic (cm3)</td>
+                    <label for="post_cubic"></label>
+                    <td><input id="post_cubic" name="post_cubic" type="number" required></td>
+                </tr>
+                <tr>
+                    <td>Engine power(hp)</td>
+                    <label for="post_engine_power_hp"></label>
+                    <td><input id="post_engine_power_hp" name="post_engine_power_hp" type="number" required></td>
+                </tr>
+                <tr>
+                    <td>Contact (email)</td>
+                    <label for="user_email"></label>
+                    <td><input id="user_email" name="user_email" type="email" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Additional information</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Transmission</td>
+                    <label for="post_transmission"></label>
+                    <td><input id="post_transmission" name="post_transmission" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Original color</td>
+                    <label for="post_original_color"></label>
+                    <td><input id="post_original_color" name="post_original_color" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Climate</td>
+                    <label for="post_climate"></label>
+                    <td><input id="post_climate" name="post_climate" type="text"></td>
+                </tr>
+                <tr>
+                    <td>Doors</td>
+                    <label for="post_doors"></label>
+                    <td><input id="post_doors" name="post_doors" type="text"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div><br>
+        <label for="post_country">Country</label> 
+        <select name="post_country" id="post_country">
+            {% for country in countries %}
+            <option value="{{country.id}}">{{country.name}}</option>
+            {% endfor %}
+        </select>
+    </div><br>
+    <div class="gallery">
+        <input type="file" name="file1"><br><br>
+        <input type="file" name="file2"><br><br>
+        <input type="file" name="file3"><br><br>
+        <input type="file" name="file4"><br><br>
+        <input type="file" name="file5">
+    </div>
+
+    <div>
+        <button id="post_submit" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

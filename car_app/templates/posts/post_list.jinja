@@ -1,0 +1,26 @@
+{% extends "_layout.jinja" %}
+{% block content %}
+    {% if not posts %}
+    <h3>Unfortunately we do not have such cars!</h3>
+    {% endif %}
+    <div class="rows">
+    {% for post in posts %}
+        <div>
+            <div>
+                <section class="rows_posts">
+                    <h3>{{post.brand}} {{ post.model }} - {{post.price}}$</h3> <!-- CENA -->
+                    <div>
+                        <a target="_blank">
+                            <a href="{{url_for('post_details', post_id=post.id)}}"><img src="{{url_for('static', filename='cars_images/' + post.photo1)}}" width="200" height="100"></a>
+                        </a>
+                        <div></div>
+                    </div>
+                    <p>Posted on {{post.posted}} 
+                    <a href="{{url_for('profile_details', username=post.user.username)}}">{{post.user.full_name}}</a></p>
+                    <p><a href="{{url_for('post_details', post_id=post.id)}}">View complete post</a></p>
+                </section>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

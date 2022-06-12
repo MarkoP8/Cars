@@ -1,0 +1,49 @@
+{% extends '_layout.jinja' %}
+{% block content %}
+<h2>Search a car</h2>
+<form action="{{url_for('search')}}" method="POST">
+    <div class="field">
+        <a>Car</a><br>
+        <select id="brand" name="brand" type="text">
+            <option value="" ></option>
+            <option value="bmw" >Bmw</option>
+            <option value="rollse_royce" >Rollse Royce</option>
+            <option value="lamborghini">Lamborghini</option>
+            <option value="porshe">Porshe</option>
+            <option value="ferrari" >Ferrari</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="jaguar">Jaguar</option>
+        </select>
+    </div>
+    <div class="field">
+        <p>Car body</p>
+        <select id="car_body" name="car_body" type="text">
+            <option value="" ></option>
+            <option value="limousine">Limousine</option>
+            <option value="caravan">Caravan</option>
+            <option value="coupe">Coupe</option>
+            <option value="suv">SUV</option>
+            <option value="convertible">Convertible</option>
+        </select>
+    </div>
+    <div class="field">
+        <p>Type of fuel</p>
+        <select id="fuel" name="fuel" type="text">
+            <option value="" ></option>
+            <option value="diesel">Diesel</option>
+            <option value="gas">Gas</option>
+            <option value="electric">Electric drive</option>
+        </select>
+    </div>
+    {#<div class="field">
+        <select id="fuel" name="fuel" type="text">
+            <option disabled {{ "selected" if not operation else "" }} value="">Number of doors</option>
+            <option value="2/3" {{ "selected" if operation == "2/3" else "" }}>2/3 doors</option>
+            <option value="4/5" {{ "selected" if operation == "4/5" else "" }}>4/5 doors</option>
+        </select><br><br>
+    </div>#}
+    <div>
+        <button class="form_button" type="submit">Search</button>
+    </div>
+</form>
+{% endblock %}

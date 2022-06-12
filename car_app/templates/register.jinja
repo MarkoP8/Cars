@@ -1,0 +1,22 @@
+{% extends '_layout.jinja' %}
+{% block content %}
+<h1>Register user</h1>
+<form action="{{url_for('register')}}" method="POST" action="register" enctype="multipart/form-data"> {# da bih naglasio da saljem fajlove uz podatke enctype #}
+    <div class="register_field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text">
+    </div>
+    <div class="register_field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email">
+    </div>
+    <div class="register_field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password">
+    </div>
+    <div>
+        <button class="form_button" type="submit">Register</button>
+    </div>
+</form>
+
+{% endblock %}

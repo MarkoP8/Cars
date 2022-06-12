@@ -1,0 +1,12 @@
+venv
+cars.sql
+a.txt
+__pycache__
+.vscode
+cars_images
+car.svg
+car_app/__init__.py
+car_app/database/__init__.py
+car_app/database/exceptions/__init__.py
+car_app/database/models/__init__.py
+car_app/database/settings.ini

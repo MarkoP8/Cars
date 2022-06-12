@@ -1,0 +1,18 @@
+{% extends "_layout.jinja" %}
+{% block content %}
+    <h1>Login</h1>
+    <form action="{{url_for('login')}}" method="post">
+        <div class="login_field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" />
+        </div>
+        <div class="login_field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" />
+        </div>
+        <div>
+            <button id="login_button" type="submit">Login</button>
+        </div>
+    </form>
+    <p><b>Don't have an account?</b> <a href="{{ url_for('register') }}">Register</a></p>
+{% endblock %}

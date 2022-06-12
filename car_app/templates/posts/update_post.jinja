@@ -1,0 +1,148 @@
+{% extends "_layout.jinja" %}
+{% block content %}
+
+
+<form action="{{url_for('update_post', post_id=post.id)}}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="post_title">Title</label>
+        <input id="post_title" name="post_title"
+         type="text" value="{{post.title}}" />
+    </div>
+    <div>
+        <table>
+            <thead>
+                <h2>Information</h2>
+            </thead>
+            <tbody>
+               <tr>
+                    <td>Brand</td>
+                    <label for="post_brand"></label>
+                    <td><select name="post_brand" id="brand" required>
+                        <option disabled {{ "selected" if not post.brand else "" }} value="">Brand</option>
+                        <option value="bmw" {{ "selected" if post.brand == "bmw" else "" }}>Bmw</option>
+                        <option value="rollse_royce" {{ "selected" if post.brand == "rollse_royce" else "" }}>Rollse Royce</option>
+                        <option value="lamborghini" {{ "selected" if post.brand == "lamborghini" else "" }}>Lamborghini</option>
+                        <option value="porshe" {{ "selected" if post.brand == "porshe" else "" }}>Porshe</option>
+                        <option value="ferrari" {{ "selected" if post.brand == "ferrari" else "" }}>Ferrari</option>
+                        <option value="mercedes" {{ "selected" if post.brand == "mercedes" else "" }}>Mercedes</option>
+                        <option value="jaguar" {{ "selected" if post.brand == "jaguar" else "" }}>Jaguar</option>
+                        <option value="bentley" {{ "selected" if operation == "bentley" else "" }}>Bentley</option>
+                        <option value="mclaren" {{ "selected" if operation == "mclaren" else "" }}>McLaren</option>
+                    </select></td>
+                </tr>
+                <tr>
+                    <td>Model</td>
+                    <label for="post_model"></label>
+                    <td><input id="post_model" name="post_model" type="text" value="{{ post.model }}" required></td>
+                </tr>
+                <tr>
+                    <td>Price $</td>
+                    <label for="post_price"></label>
+                    <td><input id="post_price" name="post_price" type="number" value="{{ post.price }}" required></td>
+                </tr>
+                <tr>
+                    <td>Year made</td>
+                    <label for="post_year_made"></label>
+                    <td><input id="post_year_made" name="post_year_made" type="number" min="2000" max="2022" value="{{ post.year_made }}" required></td>
+                </tr>
+                <tr>
+                    <td>Mileage(km)</td>
+                    <label for="post_brand"></label>
+                    <td><input id="post_mileage_km" name="post_mileage_km" type="number" value="{{ post.mileage_km }}" required></td>
+                </tr>
+                <tr>
+                    <td>Car body</td>
+                    <label for="post_brand"></label>
+                    <td><input id="post_car_body" name="post_car_body" type="text" value="{{ post.car_body }}" required></td>
+                </tr>
+                <tr>
+                    <td>Feul</td>
+                    <label for="post_feul"></label>
+                    <td><input id="post_feul" name="post_feul" type="text" value="{{ post.feul }}" required></td>
+                </tr>
+                <tr>
+                    <td>Cubic</td>
+                    <label for="post_cubic"></label>
+                    <td><input id="post_cubic" name="post_cubic" type="number" value="{{ post.cubic }}" required></td>
+                </tr>
+                <tr>
+                    <td>Engine power(hp)</td>
+                    <label for="post_engine_power_hp"></label>
+                    <td><input id="post_engine_power_hp" name="post_engine_power_hp" type="number" value="{{ post.engine_power_hp }}" required></td>
+                </tr>
+                <tr>
+                    <td>Contact (email)</td>
+                    <label for="user_email"></label>
+                    <td><input id="user_email" name="user_email" type="email" value="{{ post.user.email }}" required></td>
+                </tr>
+            </tbody>
+        </table>
+        <h2>Additional information</h2>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Transmission</td>
+                    <label for="post_transmission"></label>
+                    <td><input id="post_transmission" name="post_transmission" type="text" value="{{ post.transmission }}"></td>
+                </tr>
+                <tr>
+                    <td>Original color</td>
+                    <label for="post_original_color"></label>
+                    <td><input id="post_original_color" name="post_original_color" type="text" value="{{ post.original_color }}"></td>
+                </tr>
+                <tr>
+                    <td>Climate</td>
+                    <label for="post_climate"></label>
+                    <td><input id="post_climate" name="post_climate" type="text" value="{{ post.climate }}"></td>
+                </tr>
+                <tr>
+                    <td>Doors</td>
+                    <label for="post_doors"></label>
+                    <td><input id="post_doors" name="post_doors" type="text" value="{{ post.doors }}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <label for="post_country">Country</label> 
+        <select name="post_country" id="post_country">
+            {% for country in countries %}
+            <option value="{{country.id}}" 
+            {{ "selected" if post.country.id == country.id else "" }}
+            >{{country.name}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="update_gallery">
+        <img src="{{url_for('static', filename='cars_images/' +post.photo1)}}" width=300 height=150>
+        <input type="file" name="file1">
+        <br>
+        <img src="{{url_for('static', filename='cars_images/' +post.photo2)}}" width=300 height=150>
+        <input type="file" name="file2">
+        <br>
+        <img src="{{url_for('static', filename='cars_images/' +post.photo3)}}" width=300 height=150>
+        <input type="file" name="file3">
+        <br>
+        <img src="{{url_for('static', filename='cars_images/' +post.photo4)}}" width=300 height=150>
+        <input type="file" name="file4">
+        <br>
+        <img src="{{url_for('static', filename='cars_images/' +post.photo5)}}" width=300 height=150>
+        <input type="file" name="file5">
+    </div><br>
+    <div>
+        <button id="post_submit" type="submit">Submit</button>
+    </div>
+</form>
+<script>
+
+    const editor = SUNEDITOR.create((document.getElementById('post_content') || 'post_content'),{
+});
+
+const post_content = document.querySelector("#post_content")
+const post_submit = document.querySelector("#post_submit")
+function take_editor_value() {
+    post_content.value = editor.getContents()
+}
+post_submit.onclick = take_editor_value
+</script>
+{% endblock %}

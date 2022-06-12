@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Cars</title>
+    <!-- Reset CSS svojstava -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" />
+    <!-- Ikonice -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <!-- Moj CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}">
+</head>
+<body>
+    <div class="wrap_1024">
+         
+         {% if error %}
+            <div id="error">
+                <div>{{error}}</div>
+                <button id="close_error" onclick="this.parentNode.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        {% endif %}
+        {% if success %}
+            <div id="success">
+                <div>{{success}}</div>
+                <button id="close_error" onclick="this.parentNode.remove()">
+                    <i class="fas fa-check-circle"></i>
+                </button>
+            </div>
+        {% endif %}
+
+        <div id="title">
+            <h3>Luxury Cars</h3>
+        </div>
+
+        <header>
+
+            <div id="login_bar">
+                {% if not "user" in session %}
+                    <a href="{{url_for('login')}}">
+                        <i class="fas fa-user"></i> Login
+                    </a>
+                {% else %}              
+                                                                    
+                        <a href="{{url_for('profile_details', username=session.user.username)}}"> {{session.user.full_name}}</a>
+                        <a href="{{url_for('logout')}}"><i class="far fa-user"></i> Logout</a>
+                {% endif %}
+            </div>
+        </header>
+        <nav id="main_nav">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('all_posts') }}">View posts</a>
+            <a href="{{ url_for('search') }}">Search</a>
+            <a href="{{url_for('new_post')}}">Sell</a>
+            <a href="{{ url_for('my_posts') }}">My posts</a>
+        </nav>
+        <main>
+            <section id="main_content">
+                {% block content %}{% endblock %}
+            </section>
+        </main>
+        <footer>
+            <p>&copy; {{current_year}} Marko Petkovic</p>
+        </footer>
+    </div>
+</body>
+</html>
